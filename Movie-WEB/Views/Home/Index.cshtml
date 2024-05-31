@@ -1,0 +1,108 @@
+﻿@{
+	ViewData["Title"] = "Home Page";
+}
+@model MovieSeriesVM
+
+
+
+
+
+<div class="section" style="padding-top:10%">
+    <div class="container">
+        <div class="row mb-5 align-items-center">
+            <div class="col-lg-6">
+                <h2 class="font-weight-bold text-primary heading">
+                    Dizi ve Filmler
+                </h2>
+            </div>
+@*             <div class="col-lg-6 text-lg-end">
+                <p>
+                    <a asp-area="" asp-controller="Movies" asp-action="Index" class="btn btn-primary text-white py-3 px-4">Tümünü Gör</a>
+                </p>
+            </div> *@
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="property-slider-wrap">
+                    <div class="property-slider">
+
+                        @foreach (var movie in Model.Movies)
+                        {
+
+                            <div class="property-item">
+                                <a asp-controller="Movies" asp-action="MovieDetail" asp-route-id="@movie.Id" class="img">
+                                    <img src="@movie.ImagePath" alt="Image" class="img-fluid" />
+                                </a>
+
+                                <div class="property-content">
+                                    <div class="price mb-2"><span>@movie.MovieName</span></div>
+                                    <div>
+                                        <span class="d-block mb-2 text-black-50"> @movie.Genre</span>
+                                        <span class="city d-block mb-3">@movie.Director</span>
+                                        <div class="specs d-flex mb-4">
+                                            <span class="d-block d-flex align-items-center me-3">
+                                                <span class="caption"><i class="fa-solid fa-calendar-days" style="margin-right:5px"></i>@movie.ReleaseDateonly</span>
+                                            </span
+                                            <span class="d-block d-flex align-items-center">
+                                                <span class="caption"><i class="fa-regular fa-clock" style="margin-right:5px"></i>@movie.Duration</span>
+                                            </span>
+                                        </div>
+
+                                        <a asp-controller="Movies" asp-action="MovieDetail" asp-route-id="@movie.Id" class="btn btn-dark py-2 px-3">Detay</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        }
+
+                        @foreach (var tvSeries in Model.TvSeries)
+                        {
+
+                            <div class="property-item">
+                                <a asp-controller="TvSeries" asp-action="TvSeriesDetail" asp-route-id="@tvSeries.Id" class="img">
+                                    <img src="@tvSeries.ImagePath" alt="Image" class="img-fluid" />
+                                </a>
+
+                                <div class="property-content">
+                                    <div class="price mb-2"><span>@tvSeries.TvSeriesName</span></div>
+                                    <div>
+                                        <span class="d-block mb-2 text-black-50"> @tvSeries.Genre</span>
+                                        
+                                        <span class="city d-block mb-3">  @tvSeries.Director</span>
+
+                                        <div class="specs d-flex mb-4">
+                                            <span class="d-block d-flex align-items-center me-3">
+                                                <span class="caption"><i class="fa-regular fa-clock"></i> @tvSeries.ReleaseDateonly</span>
+                                            </span>
+                                        </div>
+
+                                        <a asp-controller="TvSeries" asp-action="TvSeriesDetail" asp-route-id="@tvSeries.Id" class="btn btn-dark py-2 px-3">Detay</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        }
+                        
+                    </div>
+
+                    <div id="property-nav"
+                         class="controls"
+                         tabindex="0"
+                         aria-label="Carousel Navigation">
+                        <span class="prev"
+                              data-controls="prev"
+                              aria-controls="property"
+                              tabindex="-1">Prev</span>
+                        <span class="next"
+                              data-controls="next"
+                              aria-controls="property"
+                              tabindex="-1">Next</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
